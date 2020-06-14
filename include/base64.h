@@ -22,11 +22,11 @@
 /**
  * This is the function that does the actual encoding. The original data is
  * not modified. Instead, a memory buffer of the necessary length is dynamically
- * allocated via a call to malloc, which the caller needs to remember to free.
+ * allocated via a call to calloc, which the caller needs to remember to free.
  * 
  * If the given data pointer is NULL, the function will simply return a NULL
- * pointer for the return buffer and an output length of zero.
+ * pointer for the return buffer.
  */
-char* base64_encode(unsigned char* data, size_t input_length, size_t* output_length);
+char* base64_encode(unsigned char* data, size_t input_length);
 
 #endif /* BASE64_H_INCLUDED */

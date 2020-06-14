@@ -43,20 +43,13 @@ static size_t base64_output_length(size_t input_length) {
 
 static const char basis_table[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-char* base64_encode(unsigned char* data, size_t input_length, size_t* output_length) {
+char* base64_encode(unsigned char* data, size_t input_length) {
     /**
      * Begin by testing for edge-cases, namely a NULL data pointer or an input
      * length of size zero. In both cases, we will simply return NULL as the
      * return buffer pointer and set the output_length size to zero.
      */
     if ((data == NULL) || (input_length == 0)) {
-        /**
-         * Set the output_length to zero to let the user know they needn't
-         * bother checking the "return buffer" for any data, otherwise they'll
-         * trigger a segmentation fault.
-         */
-        *output_length = 0;
-
         /**
          * Return now to short-circuit function execution.
          */
@@ -67,23 +60,26 @@ char* base64_encode(unsigned char* data, size_t input_length, size_t* output_len
      * Calculate the number of bytes we'll need to allocate for the output
      * buffer.
      */
-    *output_length = base64_output_length(input_length);
+    size_t output_length = base64_output_length(input_length);
 
     /**
      * Allocate the output buffer.
      */
-    unsigned char* output_buffer = malloc(*output_length * sizeof (unsigned char));
+    unsigned char* output_buffer = calloc(output_length + 1, sizeof (unsigned char));
 
-    /**
-     * While normally we would simply declare counter variables in the for loop
-     * initialization section, we need the index after we've finished iterating
-     * through the input buffer to do some last-minute checks related to the
-     * output buffer padding.
-     */
-    size_t index = 0;
+    size_t i = 0;
+    size_t j = 0;
+    size_t v = 0;
 
-    for (index = 0; index < input_length - 2; index += 3) {
-        //
+    for (i = 0, j = 0; i < input_length; i += 3, j += 4) {
+        v = data[i];
+        v = ((i + 1) < input_length) ? 8 | data[i+1] : v << 8;
+        v = ((i + 2) < input_length) ? 8 | data[i+2] : v << 8;
+
+        output_buffer[i+0] = basis_table[(v >> 18) & 0x3F];
+        output_buffer[i+1] = basis_table[(v >> 12) & 0x3F];
+        output_buffer[j+2] = ((i + 1) < input_length) ? basis_table[(v >> 6) & 0x3F] : '=';
+        output_buffer[j+3] = ((i + 2) < input_length) ? basis_table[v & 0x3f] : '=';
     }
 
     return output_buffer;

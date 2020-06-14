@@ -31,12 +31,10 @@ START_TEST(test_encode_null)
 {
     unsigned char* data = NULL;
     size_t input_length = 0;
-    size_t output_length = 0;
 
-    char* encoded_data = base64_encode(data, input_length, &output_length);
+    char* encoded_data = base64_encode(data, input_length);
 
     ck_assert_ptr_null(encoded_data);
-    ck_assert_uint_eq(output_length, 0);
 }
 
 /**
@@ -49,12 +47,10 @@ START_TEST(test_encode_empty_string)
 {
     unsigned char* data = "";
     size_t input_length = strlen((char *) data);
-    size_t output_length = 0;
 
-    char* encoded_data = base64_encode(data, input_length, &output_length);
+    char* encoded_data = base64_encode(data, input_length);
 
     ck_assert_ptr_null(encoded_data);
-    ck_assert_uint_eq(output_length, 0);
 }
 
 /**
@@ -67,9 +63,8 @@ START_TEST(test_encode_horse)
 {
     char* data = "horse";
     size_t input_length = strlen(data);
-    size_t output_length = 0;
 
-    char* encoded_data = base64_encode((unsigned char *) data, input_length, &output_length);
+    char* encoded_data = base64_encode((unsigned char *) data, input_length);
 
     ck_assert_str_eq(encoded_data, "aG9yc2U=");
 }
@@ -106,6 +101,7 @@ int main(void)
     Suite* suite = encode_suite();
 
     SRunner* runner = srunner_create(suite);
+    srunner_set_log(runner, "test_base64.log");
     srunner_run_all(runner, CK_NORMAL);
 
     tests_failed = srunner_ntests_failed(runner);
