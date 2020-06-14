@@ -3,4 +3,4 @@
 
 | Test Case | Summary | Status |
 | :-------: | :-----: | :----: |
-| TS1-1 | Returns `NULL` if input string is `NULL`.   | <span style="color: green;">PASS</span> |
+| TS1-1 | Returns `NULL` if input string is `NULL`. | PASS |
