@@ -35,6 +35,24 @@ START_TEST(test_encode_null)
     ck_assert_ptr_null(base64_string);
 }
 
+/**
+ * This test suite encompasses all of the unit tests related to base64 encoding.
+ * 
+ * @todo Add documentation strings for the three individual sections within the
+ * function body.
+ */
+Suite* encode_suite(void)
+{
+    Suite* suite = suite_create("base64_encode Tests");
+
+    TCase* test_case_encode_null = tcase_create("Base64 Encode NULL String");
+
+    tcase_add_test(test_case_encode_null, test_encode_null);
+    suite_add_tcase(suite, test_case_encode_null);
+
+    return suite;
+}
+
 int main(void)
 {
     puts("test base64.c");
