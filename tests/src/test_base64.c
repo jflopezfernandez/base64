@@ -29,10 +29,14 @@
  */
 START_TEST(test_encode_null)
 {
-    char* string = NULL;
-    char* base64_string = base64_encode((unsigned char *) string);
+    unsigned char* data = NULL;
+    size_t input_length = 0;
+    size_t output_length = 0;
 
-    ck_assert_ptr_null(base64_string);
+    unsigned char* encoded_data = base64_encode(data, input_length, &output_length);
+
+    ck_assert_ptr_null(encoded_data);
+    ck_assert_uint_eq(output_length, 0);
 }
 
 /**
@@ -43,10 +47,14 @@ START_TEST(test_encode_null)
  */
 START_TEST(test_encode_empty_string)
 {
-    char* string = "";
-    char* base64_string = base64_encode((unsigned char *) string);
+    unsigned char* data = "";
+    size_t input_length = strlen((char *) data);
+    size_t output_length = 0;
 
-    ck_assert_str_eq(string, base64_string);
+    unsigned char* encoded_data = base64_encode(data, input_length, &output_length);
+
+    ck_assert_ptr_null(encoded_data);
+    ck_assert_uint_eq(output_length, 0);
 }
 
 /**
@@ -57,10 +65,13 @@ START_TEST(test_encode_empty_string)
  */
 START_TEST(test_encode_horse)
 {
-    char* string = "horse";
-    char* base64_string = base64_encode((unsigned char *) string);
+    char* data = "horse";
+    size_t input_length = strlen(data);
+    size_t output_length = 0;
 
-    ck_assert_str_eq(base64_string, "aG9yc2U=");
+    unsigned char* encoded_data = base64_encode((unsigned char *) data, input_length, &output_length);
+
+    ck_assert_str_eq((char *) encoded_data, "aG9yc2U=");
 }
 
 /**
