@@ -20,7 +20,30 @@
 
 #include "base64.h"
 
-unsigned char* base64_encode(unsigned char* data, size_t input_length, size_t* output_length) {
+/**
+ * In order to calculate the length of our base64-encoded output, we need to
+ * round up the input length to the nearest multiple of three. We then divide
+ * by three to get the number of 8-byte blocks we'll need in the output. Since
+ * base64 encoding takes three bytes of eight bits and outputs four bytes of
+ * six bits, we need to multiply this number by four, giving us the length of
+ * our output.
+ */
+static size_t base64_output_length(size_t input_length) {
+    size_t output_length = input_length;
+
+    while (output_length % 3 != 0) {
+        ++output_length;
+    }
+
+    output_length /= 3;
+    output_length *= 4;
+
+    return output_length;
+}
+
+static const char basis_table[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+
+char* base64_encode(unsigned char* data, size_t input_length, size_t* output_length) {
     /**
      * Begin by testing for edge-cases, namely a NULL data pointer or an input
      * length of size zero. In both cases, we will simply return NULL as the
@@ -40,5 +63,28 @@ unsigned char* base64_encode(unsigned char* data, size_t input_length, size_t* o
         return NULL;
     }
 
-    return NULL;
+    /**
+     * Calculate the number of bytes we'll need to allocate for the output
+     * buffer.
+     */
+    *output_length = base64_output_length(input_length);
+
+    /**
+     * Allocate the output buffer.
+     */
+    unsigned char* output_buffer = malloc(*output_length * sizeof (unsigned char));
+
+    /**
+     * While normally we would simply declare counter variables in the for loop
+     * initialization section, we need the index after we've finished iterating
+     * through the input buffer to do some last-minute checks related to the
+     * output buffer padding.
+     */
+    size_t index = 0;
+
+    for (index = 0; index < input_length - 2; index += 3) {
+        //
+    }
+
+    return output_buffer;
 }

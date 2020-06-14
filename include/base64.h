@@ -27,6 +27,6 @@
  * If the given data pointer is NULL, the function will simply return a NULL
  * pointer for the return buffer and an output length of zero.
  */
-unsigned char* base64_encode(unsigned char* data, size_t input_length, size_t* output_length);
+char* base64_encode(unsigned char* data, size_t input_length, size_t* output_length);
 
 #endif /* BASE64_H_INCLUDED */
