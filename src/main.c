@@ -18,10 +18,17 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-int main(void)
+#include "base64.h"
+
+int main(int argc, char *argv[])
 {
-    puts("testing...");
+    while (*++argv) {
+        char* encoded_string = base64_encode((unsigned char *) *argv, strlen(*argv));
+        puts(encoded_string);
+        free(encoded_string);
+    }
 
     return EXIT_SUCCESS;
 }

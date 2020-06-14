@@ -12,7 +12,7 @@ CC       := gcc
 CFLAGS   := -std=c17 -Wall -Wextra -Wpedantic -O3 -mtune=native
 CPPFLAGS := $(CPPFLAGS) -I include
 LDFLAGS  := -O
-LIBS     := -lcheck
+LIBS     :=
 
 TARGET := base64
 
