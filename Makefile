@@ -6,6 +6,8 @@ RM := rm -f
 SRCS := $(notdir $(wildcard src/*.c))
 OBJS := $(patsubst %.c,%.o,$(SRCS))
 
+CPPFLAGS := $(CPPFLAGS) -I include
+
 TARGET := base64
 
 all: $(TARGET)
