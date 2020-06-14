@@ -26,6 +26,6 @@
  * 
  * If the original_string pointer is NULL, the function will simply return NULL.
  */
-char* base64_encode(char* original_string);
+char* base64_encode(unsigned char* original_string);
 
 #endif /* BASE64_H_INCLUDED */
