@@ -73,11 +73,11 @@ char* base64_encode(unsigned char* data, size_t input_length) {
 
     for (i = 0, j = 0; i < input_length; i += 3, j += 4) {
         v = data[i];
-        v = ((i + 1) < input_length) ? 8 | data[i+1] : v << 8;
-        v = ((i + 2) < input_length) ? 8 | data[i+2] : v << 8;
+        v = ((i + 1) < input_length) ? v << 8 | data[i+1] : v << 8;
+        v = ((i + 2) < input_length) ? v << 8 | data[i+2] : v << 8;
 
-        output_buffer[i+0] = basis_table[(v >> 18) & 0x3F];
-        output_buffer[i+1] = basis_table[(v >> 12) & 0x3F];
+        output_buffer[j+0] = basis_table[(v >> 18) & 0x3F];
+        output_buffer[j+1] = basis_table[(v >> 12) & 0x3F];
         output_buffer[j+2] = ((i + 1) < input_length) ? basis_table[(v >> 6) & 0x3F] : '=';
         output_buffer[j+3] = ((i + 2) < input_length) ? basis_table[v & 0x3f] : '=';
     }
