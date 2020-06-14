@@ -19,6 +19,13 @@
 #ifndef BASE64_H_INCLUDED
 #define BASE64_H_INCLUDED
 
-/** TODO: Implement base64.h */
+/**
+ * This is the function that does the actual encoding. The original string is
+ * not modified. Instead, a string of the necessary length is dynamically
+ * allocated via a call to malloc, which the caller needs to remember to free.
+ * 
+ * If the original_string pointer is NULL, the function will simply return NULL.
+ */
+char* base64_encode(char* original_string);
 
 #endif /* BASE64_H_INCLUDED */

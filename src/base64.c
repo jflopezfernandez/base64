@@ -18,4 +18,15 @@
 
 #include "base64.h"
 
-/** TODO: Implement base64.c */
+/**
+ * Rather than including the entire standard library header, for now we'll
+ * simply check whether NULL has been previously defined. If it hasn't, we'll
+ * just go ahead and define it and move on with our lives.
+ */
+#ifndef NULL
+#define NULL ((void *) 0)
+#endif
+
+char* base64_encode(char* original_string) {
+    return NULL;
+}
