@@ -19,7 +19,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <check.h>
+
 #include "base64.h"
+
+/**
+ * This test ensures that the base64_encode function returns a NULL pointer
+ * when it is passed in a NULL string to encode.
+ */
+START_TEST(test_encode_null)
+{
+    char* string = NULL;
+    char* base64_string = base64_encode(string);
+
+    ck_assert_ptr_null(base64_string);
+}
 
 int main(void)
 {
