@@ -10,4 +10,4 @@ test suites that have been defined (all one of them at the moment).
 | :-------: | :-----: | :----: |
 | TS1-1 | Returns `NULL` with an output length of `0` if input string is `NULL`. | PASS |
 | TS1-2 | Returns `NULL` with an output length of `0` if input length is `0`. | PASS |
-| TS1-3 | Encoding `horse` yields `aG9yc2U=`. | FAIL |
+| TS1-3 | Encoding `horse` yields `aG9yc2U=`. | PASS |
