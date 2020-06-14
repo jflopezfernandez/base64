@@ -30,7 +30,7 @@
 START_TEST(test_encode_null)
 {
     char* string = NULL;
-    char* base64_string = base64_encode(string);
+    char* base64_string = base64_encode((unsigned char *) string);
 
     ck_assert_ptr_null(base64_string);
 }
@@ -44,7 +44,7 @@ START_TEST(test_encode_null)
 START_TEST(test_encode_empty_string)
 {
     char* string = "";
-    char* base64_string = base64_encode(string);
+    char* base64_string = base64_encode((unsigned char *) string);
 
     ck_assert_str_eq(string, base64_string);
 }
