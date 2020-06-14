@@ -60,9 +60,12 @@ Suite* encode_suite(void)
     Suite* suite = suite_create("base64_encode Tests");
 
     TCase* test_case_encode_null = tcase_create("Base64 Encode NULL String");
-
     tcase_add_test(test_case_encode_null, test_encode_null);
     suite_add_tcase(suite, test_case_encode_null);
+
+    TCase* test_case_encode_empty_string = tcase_create("Base64 Encode Empty String");
+    tcase_add_test(test_case_encode_empty_string, test_encode_empty_string);
+    suite_add_tcase(suite, test_case_encode_empty_string);
 
     return suite;
 }
