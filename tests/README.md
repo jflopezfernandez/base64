@@ -1,3 +1,6 @@
-# Base64 Tests
-Some day, a testing plan will populate these barren lands. Alas, today is not
-that day.
+# Base64 Testing and Development Plan
+## Test Case Specifications
+
+| Test Case | Summary | Status |
+| :-------: | :-----: | :----: |
+| TS1-1 | Returns `NULL` if input string is `NULL`.   | <span style="color: green;">PASS</span> |
