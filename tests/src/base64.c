@@ -55,7 +55,16 @@ Suite* encode_suite(void)
 
 int main(void)
 {
-    puts("test base64.c");
+    int tests_failed = 0;
 
-    return EXIT_SUCCESS;
+    Suite* suite = encode_suite();
+
+    SRunner* runner = srunner_create(suite);
+    srunner_run_all(runner, CK_NORMAL);
+
+    tests_failed = srunner_ntests_failed(runner);
+
+    srunner_free(runner);
+
+    return tests_failed;
 }
