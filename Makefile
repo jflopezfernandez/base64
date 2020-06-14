@@ -18,6 +18,19 @@ $(TARGET): $(OBJS)
 %.o: %.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $^
 
+tests: $(TARGET)
+	$(MAKE) -C tests
+
+check: $(TARGET)
+	$(MAKE) -C tests check
+
 .PHONY: clean
 clean:
 	$(RM) $(OBJS) $(TARGET)
+
+.PHONY: clean-tests
+clean-tests:
+	$(MAKE) -C tests clean
+
+.PHONY: dist-clean
+dist-clean: clean-tests clean
