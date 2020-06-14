@@ -3,7 +3,13 @@ vpath %.c src
 
 RM := rm -f
 
+# TODO: This should be configurable eventually, ideally with autotools
+# integration.
+CC       := gcc
+CFLAGS   := -std=c17 -Wall -Wextra -Wpedantic -O3 -mtune=native
 CPPFLAGS := $(CPPFLAGS) -I ../include
+LDFLAGS  := -O
+LIBS     := -lcheck
 
 TESTS := base64
 

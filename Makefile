@@ -6,7 +6,13 @@ RM := rm -f
 SRCS := $(notdir $(wildcard src/*.c))
 OBJS := $(patsubst %.c,%.o,$(SRCS))
 
+# TODO: This should be configurable eventually, ideally with autotools
+# integration.
+CC       := gcc
+CFLAGS   := -std=c17 -Wall -Wextra -Wpedantic -O3 -mtune=native
 CPPFLAGS := $(CPPFLAGS) -I include
+LDFLAGS  := -O
+LIBS     := -lcheck
 
 TARGET := base64
 
