@@ -36,6 +36,7 @@
 *.x86_64
 *.hex
 base64
+tests/test_*
 
 # Debug files
 *.dSYM/
