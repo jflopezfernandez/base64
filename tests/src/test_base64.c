@@ -50,6 +50,20 @@ START_TEST(test_encode_empty_string)
 }
 
 /**
+ * This test checks the base64_encode function is properly encoding the string
+ * 'horse' into its base64-encoded equivalent.
+ *
+ * @author Jose Fernando Lopez Fernandez <jflopezfernandez@gmail.com>
+ */
+START_TEST(test_encode_horse)
+{
+    char* string = "horse";
+    char* base64_string = base64_encode((unsigned char *) string);
+
+    ck_assert_str_eq(base64_string, "aG9yc2U=");
+}
+
+/**
  * This test suite encompasses all of the unit tests related to base64 encoding.
  * 
  * @todo Add documentation strings for the three individual sections within the
