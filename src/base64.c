@@ -28,5 +28,17 @@
 #endif
 
 char* base64_encode(char* original_string) {
+    /**
+     * Begin by testing for edge-cases, namely NULL pointers and empty strings.
+     * In both cases, we will be returning the same thing, a NULL pointer or an
+     * empty string, respectively, depending on what the input was. In both
+     * cases, we are essentially returning the same thing but by value.
+     */
+    if (original_string == NULL) {
+        return NULL;
+    } else if (strcmp(original_string, "") == 0) {
+        return "";
+    }
+
     return NULL;
 }
