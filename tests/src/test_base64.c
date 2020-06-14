@@ -36,6 +36,20 @@ START_TEST(test_encode_null)
 }
 
 /**
+ * This test ensures that attempting to encode an empty string results in
+ * an empty string as the return value.
+ *
+ * @author Jose Fernando Lopez Fernandez
+ */
+START_TEST(test_encode_empty_string)
+{
+    char* string = "";
+    char* base64_string = base64_encode(string);
+
+    ck_assert_str_eq(string, base64_string);
+}
+
+/**
  * This test suite encompasses all of the unit tests related to base64 encoding.
  * 
  * @todo Add documentation strings for the three individual sections within the
