@@ -8,6 +8,6 @@ test suites that have been defined (all one of them at the moment).
 
 | Test Case | Summary | Status |
 | :-------: | :-----: | :----: |
-| TS1-1 | Returns `NULL` with an output length of `0` if input string is `NULL`. | FAIL |
-| TS1-2 | Returns `NULL` with an output length of `0` if input length is `0`. | FAIL |
+| TS1-1 | Returns `NULL` with an output length of `0` if input string is `NULL`. | PASS |
+| TS1-2 | Returns `NULL` with an output length of `0` if input length is `0`. | PASS |
 | TS1-3 | Encoding `horse` yields `aG9yc2U=`. | FAIL |
