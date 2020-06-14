@@ -81,6 +81,10 @@ Suite* encode_suite(void)
     tcase_add_test(test_case_encode_empty_string, test_encode_empty_string);
     suite_add_tcase(suite, test_case_encode_empty_string);
 
+    TCase* test_case_encode_horse = tcase_create("Base64 Encode String: Horse");
+    tcase_add_test(test_case_encode_horse, test_encode_horse);
+    suite_add_tcase(suite, test_case_encode_horse);
+
     return suite;
 }
 
