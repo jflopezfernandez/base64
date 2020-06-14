@@ -10,3 +10,4 @@ test suites that have been defined (all one of them at the moment).
 | :-------: | :-----: | :----: |
 | TS1-1 | Returns `NULL` if input string is `NULL`. | PASS |
 | TS1-2 | Encoding an empty string yields an empty string. | PASS |
+| TS1-3 | Encoding `horse` yields `aG9yc2U=`. | FAIL |
