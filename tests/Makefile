@@ -1,5 +1,6 @@
 
 vpath %.c src
+vpath %.o ../
 
 RM := rm -f
 
@@ -11,17 +12,20 @@ CPPFLAGS := $(CPPFLAGS) -I ../include
 LDFLAGS  := -O
 LIBS     := -lcheck
 
-TESTS := base64
+TESTS := test_base64
 
 all: tests
 
 check: tests
-	./base64
+	./test_base64
 
 tests: $(TESTS)
 
-base64: base64.c
+test_base64: test_base64.o base64.o
 	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
+
+%.o: %.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $^
 
 .PHONY: clean
 clean:
